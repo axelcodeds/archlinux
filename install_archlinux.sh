@@ -24,7 +24,7 @@ swapon $SWAP_PART
 
 # Instalar los paquetes base
 echo "Instalando el sistema base..."
-pacstrap /mnt base linux linux-firmware nano grub efibootmgr base-devel networkmanager dhcpcd pulseaudio-alsa alsa-utils pulseaudio
+pacstrap -K /mnt base linux linux-firmware nano grub efibootmgr base-devel networkmanager dhcpcd pulseaudio-alsa alsa-utils pulseaudio
 
 # Generar fstab
 echo "Generando fstab..."
@@ -64,6 +64,8 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 # Configurar contraseña de root
 echo "Configurando la contraseña de root..."
 echo "root:gfyk8m3j" | chpasswd
+
+mkinitcpio -P
 
 # Crear usuario con contraseña
 echo "Creando el usuario $USER_NAME..."
