@@ -8,6 +8,13 @@ SWAP_PART="/dev/sda5"
 ROOT_PART="/dev/sda6"
 TIMEZONE="America/Mexico_City"
 
+# Formatear las particiones
+echo "Formateando particiones..."
+mkfs.fat -F 32 $EFI_PART      # Formatear partición EFI como FAT32
+mkswap $SWAP_PART            # Formatear partición SWAP
+mkfs.ext4 $ROOT_PART         # Formatear partición root como ext4
+
+
 # Montar las particiones
 echo "Montando particiones..."
 mount $ROOT_PART /mnt
